@@ -9,6 +9,7 @@ public class Hangman {
     private Status status;
     private String secret;
 
+    public String name ;
     public Hangman(String s,int n){
         this(s,n,"");
 
@@ -50,7 +51,7 @@ public class Hangman {
     }
 
     public void guess(char l){
-        if (neverTryied (l))
+        if (neverTried (l))
         tried += l;
         if (wrong (l)) {
             tries --;
@@ -61,14 +62,14 @@ public class Hangman {
         return secret.indexOf (l) <0;
     }
 
-    private boolean neverTryied(char l) {
+    private boolean neverTried(char l) {
         return tried.indexOf (l)<0;
     }
 
 
-    //    public void doFoo(){
-//        throw (new RuntimeException("X is outside board")) ;
-//    }
+    public void  doFoo(){
+        throw (new RuntimeException("not a word")) ;
+    }
 
 
 }

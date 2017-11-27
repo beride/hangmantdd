@@ -1,9 +1,15 @@
 import org.junit.*;
 import  org.junit.Before;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doReturn;
 
+@RunWith (MockitoJUnitRunner.class)
 public class HangmanTest {
     @Before
     public void before() {
@@ -16,9 +22,6 @@ public class HangmanTest {
     @Test
     public void given_NewHangman_A_When__Then_StartedTest() {
         Hangman h = new Hangman ("A", 1);
-
-/*        exception.expect(RuntimeException.class);
-        h.doFoo ();*/
         assertEquals ("", h.tries ());
         assertEquals ("_", h.word ());
         assertEquals (Hangman.Status.Started, h.getStatus ());
@@ -104,5 +107,12 @@ public class HangmanTest {
         h.guess ('L');
         assertEquals (Hangman.Status.Won, h.getStatus ());
 
+    }
+
+    @Test
+    public  void doFooTest() {
+        Hangman h = new Hangman ("",0);
+        exception.expect (RuntimeException.class);
+        h.doFoo();
     }
 }
