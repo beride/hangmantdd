@@ -28,7 +28,7 @@ public class Hangman {
 
     public Status getStatus(){
 
-        if (tries <= 0) {
+        if(tries <= 0) {
             status = Status.Lose;
         }
         if(word ().equals (secret))
