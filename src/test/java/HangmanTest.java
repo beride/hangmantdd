@@ -1,13 +1,17 @@
-import org.junit.*;
-import  org.junit.Before;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.doReturn;
+import java.util.Iterator;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith (MockitoJUnitRunner.class)
 public class HangmanTest {
@@ -35,6 +39,7 @@ public class HangmanTest {
         assertEquals ("_", h.word ());
         h.guess ('A');
         assertEquals (Hangman.Status.Won, h.getStatus ());
+        assertThat(h.getStatus ()).isEqualTo (Hangman.Status.Won);
     }
 
     @Test
@@ -115,4 +120,22 @@ public class HangmanTest {
         exception.expect (RuntimeException.class);
         h.doFoo();
     }
+
+    @Test
+    public  void mockTest() {
+
+        Iterator iterator = mock(Iterator.class);
+        //预设当iterator调用next()时第一次返回hello，第n次都返回world
+        when(iterator.next()).thenReturn("hello").thenReturn("world");
+        //使用mock的对象
+        String result = iterator.next() + " " + iterator.next() + " " + iterator.next();
+        //验证结果
+        assertEquals("hello world world",result);
+        assertThat (iterator.next ().equals ("world"));
+        assertThat (iterator.next ().equals ("world"));
+        assertThat (iterator.next ().equals ("world"));
+
+    }
+
+
 }
