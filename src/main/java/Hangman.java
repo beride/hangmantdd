@@ -9,7 +9,7 @@ public class Hangman {
     private Status status;
     private String secret;
 
-    public String name ;
+    // public String name ;
     public Hangman(String s,int n){
         this(s,n,"");
 
